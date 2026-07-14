@@ -1,0 +1,47 @@
+<section class="hero" [id]="content().id">
+  <div class="hero-bg" aria-hidden="true">
+    <span class="blob blob-a"></span>
+    <span class="blob blob-b"></span>
+    <span class="blob blob-c"></span>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      @if (content().eyebrow) {
+        <span class="section-eyebrow">{{ content().eyebrow }}</span>
+      }
+      <h1 class="hero-name">
+        @for (letter of nameLetters; track $index) {
+          <span class="letter" [style.animation-delay.ms]="$index * 40">{{ letter === ' ' ? ' ' : letter }}</span>
+        }
+      </h1>
+      <p class="hero-role">{{ content().role }}</p>
+      <p class="hero-tagline">{{ content().tagline }}</p>
+      <div class="hero-actions">
+        @if (content().ctaLabel) {
+          <a class="btn btn-primary" appMagnetic [href]="'#' + content().ctaTarget">{{ content().ctaLabel }}</a>
+        }
+        @if (content().secondaryCtaLabel) {
+          <a class="btn btn-ghost" appMagnetic [href]="content().secondaryCtaHref">{{ content().secondaryCtaLabel }}</a>
+        }
+      </div>
+    </div>
+
+    @if (content().photo.url) {
+      <div class="hero-photo-wrap">
+        <img
+          class="hero-photo"
+          [src]="content().photo.url"
+          [alt]="content().photo.alt"
+          [style.width.px]="content().photo.width"
+          [style.height.px]="content().photo.height"
+          [style.object-fit]="content().photo.objectFit"
+          [style.border-radius.px]="content().photo.radius"
+        />
+      </div>
+    }
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true"><span></span></div>
+</section>

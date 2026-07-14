@@ -1,0 +1,26 @@
+<section class="section" [id]="content().id">
+  <div class="container">
+    <h2 class="section-title" appScrollReveal>{{ content().title }}</h2>
+    @if (content().intro) {
+      <p class="section-intro" [appScrollReveal]="60">{{ content().intro }}</p>
+    }
+    <div class="skills-groups">
+      @for (group of groups(); track group.category; let gi = $index) {
+        <div class="skills-group card" [appScrollReveal]="100 + gi * 100">
+          <h3 class="skills-group-title">{{ group.category }}</h3>
+          @for (skill of group.skills; track skill.id; let si = $index) {
+            <div class="skill-row" [appScrollReveal]="150 + gi * 100 + si * 60">
+              <div class="skill-row-head">
+                <span>{{ skill.name }}</span>
+                <span class="skill-level">{{ skill.level }}%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" [style.--level.%]="skill.level"></div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

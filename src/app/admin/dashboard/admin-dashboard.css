@@ -1,0 +1,36 @@
+:host {
+  display: block;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.dashboard-card {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.dashboard-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.dashboard-label {
+  color: var(--admin-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.dashboard-note {
+  font-size: 0.78rem;
+  color: #b45309;
+}
+
+.dashboard-card .admin-btn {
+  justify-self: start;
+  margin-top: 0.5rem;
+}

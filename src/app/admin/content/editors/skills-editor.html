@@ -1,0 +1,42 @@
+@if (content(); as c) {
+  <label class="field">
+    Titre de section
+    <input type="text" [ngModel]="c.title" (ngModelChange)="update({ title: $event })" />
+  </label>
+  <label class="field">
+    Introduction
+    <textarea rows="3" [ngModel]="c.intro" (ngModelChange)="update({ intro: $event })"></textarea>
+  </label>
+
+  <h4>Compétences</h4>
+  <app-array-field-editor
+    [items]="c.skills"
+    [itemTemplate]="skillTpl"
+    addLabel="Ajouter une compétence"
+    (add)="addSkill()"
+    (remove)="removeSkill($event)"
+    (reorder)="reorderSkills($event)"
+  />
+  <ng-template #skillTpl let-skill let-i="index">
+    <div class="field-row">
+      <label class="field">
+        Nom
+        <input type="text" [ngModel]="skill.name" (ngModelChange)="updateSkill(i, { name: $event })" />
+      </label>
+      <label class="field">
+        Catégorie
+        <input type="text" [ngModel]="skill.category" (ngModelChange)="updateSkill(i, { category: $event })" />
+      </label>
+    </div>
+    <label class="field">
+      Niveau ({{ skill.level }}%)
+      <input
+        type="range"
+        min="0"
+        max="100"
+        [ngModel]="skill.level"
+        (ngModelChange)="updateSkill(i, { level: +$event })"
+      />
+    </label>
+  </ng-template>
+}

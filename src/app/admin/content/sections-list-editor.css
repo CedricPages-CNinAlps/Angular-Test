@@ -1,0 +1,71 @@
+:host {
+  display: block;
+}
+
+.sections-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.section-card {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+  overflow: hidden;
+}
+
+.section-card.is-open {
+  border-color: var(--admin-primary);
+}
+
+.section-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+}
+
+.section-drag-handle {
+  cursor: grab;
+  color: var(--admin-muted);
+  user-select: none;
+}
+
+.section-card-label {
+  font-weight: 700;
+  flex: 1;
+}
+
+.section-card-type {
+  font-size: 0.78rem;
+  color: var(--admin-muted);
+  background: var(--admin-primary-soft);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+.section-card-chevron {
+  font-size: 1.2rem;
+  color: var(--admin-muted);
+  width: 1.2rem;
+  text-align: center;
+}
+
+.section-card-body {
+  padding: 0 1.25rem 1.5rem;
+  border-top: 1px solid var(--admin-border);
+  padding-top: 1.25rem;
+}
+
+.section-card-body h4 {
+  margin: 1.25rem 0 0.75rem;
+  font-size: 0.95rem;
+  color: var(--admin-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cdk-drag-preview.section-card {
+  box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.35);
+}

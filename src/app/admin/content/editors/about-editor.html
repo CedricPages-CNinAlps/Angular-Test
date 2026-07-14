@@ -1,0 +1,32 @@
+@if (content(); as c) {
+  <label class="field">
+    Titre de section
+    <input type="text" [ngModel]="c.title" (ngModelChange)="update({ title: $event })" />
+  </label>
+  <label class="field">
+    Biographie
+    <textarea rows="8" [ngModel]="c.bio" (ngModelChange)="update({ bio: $event })"></textarea>
+  </label>
+
+  <h4>Statistiques</h4>
+  <app-array-field-editor
+    [items]="c.stats"
+    [itemTemplate]="statTpl"
+    addLabel="Ajouter une statistique"
+    (add)="addStat()"
+    (remove)="removeStat($event)"
+    (reorder)="reorderStats($event)"
+  />
+  <ng-template #statTpl let-stat let-i="index">
+    <div class="field-row">
+      <label class="field">
+        Libellé
+        <input type="text" [ngModel]="stat.label" (ngModelChange)="updateStat(i, { label: $event })" />
+      </label>
+      <label class="field">
+        Valeur
+        <input type="text" [ngModel]="stat.value" (ngModelChange)="updateStat(i, { value: $event })" />
+      </label>
+    </div>
+  </ng-template>
+}

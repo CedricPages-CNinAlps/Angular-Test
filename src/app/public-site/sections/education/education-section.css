@@ -1,0 +1,26 @@
+:host {
+  display: block;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.education-period {
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.education-card h3 {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 1.1rem;
+}
+
+.education-school {
+  color: var(--color-text);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}

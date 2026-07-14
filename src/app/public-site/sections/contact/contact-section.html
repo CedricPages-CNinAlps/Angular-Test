@@ -1,0 +1,78 @@
+<section class="section" [id]="content().id">
+  <div class="container contact-grid">
+    <div [appScrollReveal]="0">
+      <h2 class="section-title">{{ content().title }}</h2>
+      @if (content().intro) {
+        <p class="section-intro">{{ content().intro }}</p>
+      }
+      <ul class="contact-info">
+        @if (content().email) {
+          <li>✉️ <a [href]="'mailto:' + content().email">{{ content().email }}</a></li>
+        }
+        @if (content().phone) {
+          <li>📞 {{ content().phone }}</li>
+        }
+        @if (content().location) {
+          <li>📍 {{ content().location }}</li>
+        }
+      </ul>
+      @if (content().socials.length) {
+        <div class="contact-socials">
+          @for (social of content().socials; track social.id) {
+            <a class="chip" [href]="social.url" target="_blank" rel="noopener">{{ social.label }}</a>
+          }
+        </div>
+      }
+    </div>
+
+    <form class="card contact-form" [appScrollReveal]="120" (ngSubmit)="submit()" #contactForm="ngForm">
+      @if (!isConfigured) {
+        <p class="contact-warning">
+          Le formulaire de contact n'est pas encore configuré (EmailJS). Utilisez l'e-mail ci-contre en attendant.
+        </p>
+      }
+      <label>
+        Nom
+        <input
+          type="text"
+          name="name"
+          required
+          [ngModel]="form().name"
+          (ngModelChange)="updateField('name', $event)"
+          [disabled]="!isConfigured"
+        />
+      </label>
+      <label>
+        E-mail
+        <input
+          type="email"
+          name="email"
+          required
+          [ngModel]="form().email"
+          (ngModelChange)="updateField('email', $event)"
+          [disabled]="!isConfigured"
+        />
+      </label>
+      <label>
+        Message
+        <textarea
+          name="message"
+          rows="5"
+          required
+          [ngModel]="form().message"
+          (ngModelChange)="updateField('message', $event)"
+          [disabled]="!isConfigured"
+        ></textarea>
+      </label>
+      <button type="submit" class="btn btn-primary" [disabled]="!isConfigured || contactForm.invalid || sending()">
+        {{ sending() ? 'Envoi…' : 'Envoyer le message' }}
+      </button>
+      @if (status() === 'success') {
+        <p class="contact-success">Message envoyé, merci !</p>
+      }
+      @if (status() === 'error') {
+        <p class="contact-error">Une erreur est survenue, réessayez plus tard.</p>
+      }
+    </form>
+  </div>
+</section>

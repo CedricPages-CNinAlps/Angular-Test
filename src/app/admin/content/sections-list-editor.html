@@ -1,0 +1,47 @@
+<h2 class="admin-section-title">Contenu</h2>
+<p class="admin-section-subtitle">
+  Réorganisez les blocs du CV par glisser-déposer, activez ou masquez-les, et éditez leur contenu.
+</p>
+
+<div cdkDropList class="sections-list" (cdkDropListDropped)="drop($event)">
+  @for (section of orderedSections(); track section.id) {
+    <div cdkDrag class="section-card" [class.is-open]="selectedId() === section.id">
+      <div class="section-card-header" (click)="select(section.id)">
+        <span class="section-drag-handle" cdkDragHandle>⠿</span>
+        <span class="section-card-label">{{ section.navLabel || typeLabels[section.type] }}</span>
+        <span class="section-card-type">{{ typeLabels[section.type] }}</span>
+        <span
+          class="admin-badge"
+          [class.admin-badge-ok]="section.visible"
+          [class.admin-badge-warn]="!section.visible"
+        >
+          {{ section.visible ? 'Visible' : 'Masquée' }}
+        </span>
+        <label class="admin-switch" (click)="$event.stopPropagation()">
+          <input type="checkbox" [checked]="section.visible" (change)="toggleVisible(section, $event)" />
+        </label>
+        <span class="section-card-chevron">{{ selectedId() === section.id ? '−' : '+' }}</span>
+      </div>
+
+      @if (selectedId() === section.id) {
+        <div class="section-card-body">
+          @if (isHero(section)) {
+            <app-hero-editor [sectionId]="section.id" />
+          } @else if (isAbout(section)) {
+            <app-about-editor [sectionId]="section.id" />
+          } @else if (isSkills(section)) {
+            <app-skills-editor [sectionId]="section.id" />
+          } @else if (isExperience(section)) {
+            <app-experience-editor [sectionId]="section.id" />
+          } @else if (isEducation(section)) {
+            <app-education-editor [sectionId]="section.id" />
+          } @else if (isPassions(section)) {
+            <app-passions-editor [sectionId]="section.id" />
+          } @else if (isContact(section)) {
+            <app-contact-editor [sectionId]="section.id" />
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

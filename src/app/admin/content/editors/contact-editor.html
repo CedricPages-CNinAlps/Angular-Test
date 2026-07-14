@@ -1,0 +1,46 @@
+@if (content(); as c) {
+  <label class="field">
+    Titre de section
+    <input type="text" [ngModel]="c.title" (ngModelChange)="update({ title: $event })" />
+  </label>
+  <label class="field">
+    Introduction
+    <textarea rows="3" [ngModel]="c.intro" (ngModelChange)="update({ intro: $event })"></textarea>
+  </label>
+  <div class="field-row">
+    <label class="field">
+      E-mail
+      <input type="email" [ngModel]="c.email" (ngModelChange)="update({ email: $event })" />
+    </label>
+    <label class="field">
+      Téléphone
+      <input type="text" [ngModel]="c.phone" (ngModelChange)="update({ phone: $event })" />
+    </label>
+  </div>
+  <label class="field">
+    Localisation
+    <input type="text" [ngModel]="c.location" (ngModelChange)="update({ location: $event })" />
+  </label>
+
+  <h4>Réseaux sociaux</h4>
+  <app-array-field-editor
+    [items]="c.socials"
+    [itemTemplate]="socialTpl"
+    addLabel="Ajouter un lien"
+    (add)="addSocial()"
+    (remove)="removeSocial($event)"
+    (reorder)="reorderSocials($event)"
+  />
+  <ng-template #socialTpl let-social let-i="index">
+    <div class="field-row">
+      <label class="field">
+        Libellé
+        <input type="text" [ngModel]="social.label" (ngModelChange)="updateSocial(i, { label: $event })" />
+      </label>
+      <label class="field">
+        URL
+        <input type="text" [ngModel]="social.url" (ngModelChange)="updateSocial(i, { url: $event })" />
+      </label>
+    </div>
+  </ng-template>
+}

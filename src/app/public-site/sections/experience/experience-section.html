@@ -1,0 +1,35 @@
+<section class="section" [id]="content().id">
+  <div class="container">
+    <h2 class="section-title" appScrollReveal>{{ content().title }}</h2>
+    @if (content().intro) {
+      <p class="section-intro" [appScrollReveal]="60">{{ content().intro }}</p>
+    }
+    <div class="timeline">
+      @for (item of content().items; track item.id; let i = $index) {
+        <div class="timeline-item" [appScrollReveal]="100 + i * 120">
+          <div class="timeline-marker"></div>
+          <div class="timeline-card card">
+            <div class="timeline-head">
+              <h3>{{ item.role }}</h3>
+              <span class="timeline-period">{{ item.period }}</span>
+            </div>
+            <p class="timeline-company">
+              {{ item.company }}
+              @if (item.location) {
+                <span> · {{ item.location }}</span>
+              }
+            </p>
+            <p class="timeline-desc">{{ item.description }}</p>
+            @if (item.tags.length) {
+              <div class="timeline-tags">
+                @for (tag of item.tags; track tag) {
+                  <span class="chip">{{ tag }}</span>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

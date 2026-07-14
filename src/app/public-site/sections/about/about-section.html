@@ -1,0 +1,18 @@
+<section class="section" [id]="content().id">
+  <div class="container">
+    <h2 class="section-title" appScrollReveal>{{ content().title }}</h2>
+    <div class="about-grid">
+      <p class="about-bio" [appScrollReveal]="80">{{ content().bio }}</p>
+      @if (content().stats.length) {
+        <div class="about-stats">
+          @for (stat of content().stats; track stat.id; let i = $index) {
+            <div class="stat card" [appScrollReveal]="120 + i * 80">
+              <span class="stat-value">{{ stat.value }}</span>
+              <span class="stat-label">{{ stat.label }}</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

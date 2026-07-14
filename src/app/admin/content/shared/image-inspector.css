@@ -1,0 +1,40 @@
+:host {
+  display: block;
+}
+
+.image-inspector {
+  display: grid;
+  gap: 1rem;
+}
+
+.image-inspector-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.image-inspector label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--admin-muted);
+}
+
+.image-inspector input,
+.image-inspector select {
+  font: inherit;
+  font-weight: 400;
+  color: var(--admin-text);
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.image-inspector-preview {
+  margin-top: 0.25rem;
+  max-width: 200px;
+  max-height: 200px;
+  border: 1px solid var(--admin-border);
+}

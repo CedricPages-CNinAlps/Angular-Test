@@ -1,0 +1,44 @@
+@if (content(); as c) {
+  <label class="field">
+    Libellé de navigation
+    <input type="text" [ngModel]="c.navLabel" (ngModelChange)="update({ navLabel: $event })" />
+  </label>
+  <label class="field">
+    Accroche (eyebrow)
+    <input type="text" [ngModel]="c.eyebrow" (ngModelChange)="update({ eyebrow: $event })" />
+  </label>
+  <label class="field">
+    Nom
+    <input type="text" [ngModel]="c.name" (ngModelChange)="update({ name: $event })" />
+  </label>
+  <label class="field">
+    Rôle / titre
+    <input type="text" [ngModel]="c.role" (ngModelChange)="update({ role: $event })" />
+  </label>
+  <label class="field">
+    Texte d'introduction
+    <textarea rows="4" [ngModel]="c.tagline" (ngModelChange)="update({ tagline: $event })"></textarea>
+  </label>
+  <div class="field-row">
+    <label class="field">
+      Libellé bouton principal
+      <input type="text" [ngModel]="c.ctaLabel" (ngModelChange)="update({ ctaLabel: $event })" />
+    </label>
+    <label class="field">
+      Cible du bouton (id de section)
+      <input type="text" [ngModel]="c.ctaTarget" (ngModelChange)="update({ ctaTarget: $event })" />
+    </label>
+  </div>
+  <div class="field-row">
+    <label class="field">
+      Libellé bouton secondaire
+      <input type="text" [ngModel]="c.secondaryCtaLabel" (ngModelChange)="update({ secondaryCtaLabel: $event })" />
+    </label>
+    <label class="field">
+      Lien bouton secondaire
+      <input type="text" [ngModel]="c.secondaryCtaHref" (ngModelChange)="update({ secondaryCtaHref: $event })" />
+    </label>
+  </div>
+  <h4>Photo</h4>
+  <app-image-inspector [image]="c.photo" (imageChange)="updatePhoto($event)" />
+}

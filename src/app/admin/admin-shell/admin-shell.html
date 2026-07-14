@@ -1,0 +1,51 @@
+<div class="admin-root admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">CV — Backoffice</div>
+    <nav class="admin-nav">
+      <a routerLink="" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Dashboard</a>
+      <a routerLink="contenu" routerLinkActive="active">Contenu</a>
+      <a routerLink="apparence" routerLinkActive="active">Apparence</a>
+      <a routerLink="technique" routerLinkActive="active">Technique</a>
+      <a routerLink="apercu" routerLinkActive="active">Aperçu</a>
+    </nav>
+    <div class="admin-sidebar-footer">
+      <button class="admin-btn admin-btn-ghost" type="button" (click)="logout()">Se déconnecter</button>
+    </div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      @if (draftStore.isDirty()) {
+        <span class="admin-badge admin-badge-warn">Modifications non publiées</span>
+      } @else {
+        <span class="admin-badge admin-badge-ok">Tout est publié</span>
+      }
+      <div class="admin-topbar-actions">
+        <button
+          class="admin-btn admin-btn-ghost"
+          type="button"
+          (click)="draftStore.discardDraft()"
+          [disabled]="!draftStore.isDirty()"
+        >
+          Annuler
+        </button>
+        <button
+          class="admin-btn admin-btn-primary"
+          type="button"
+          (click)="publish()"
+          [disabled]="draftStore.publishing() || !draftStore.isDirty()"
+        >
+          {{ draftStore.publishing() ? 'Publication…' : 'Publier' }}
+        </button>
+      </div>
+    </header>
+
+    @if (draftStore.publishMessage(); as msg) {
+      <div class="admin-publish-message" [class.is-error]="msg.type === 'error'">{{ msg.text }}</div>
+    }
+
+    <div class="admin-content">
+      <router-outlet />
+    </div>
+  </div>
+</div>

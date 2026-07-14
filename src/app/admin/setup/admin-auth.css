@@ -1,0 +1,37 @@
+.admin-auth-screen {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+.admin-auth-card {
+  width: min(420px, 100%);
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-auth-card form {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.admin-auth-error {
+  color: var(--admin-danger);
+  font-size: 0.85rem;
+}
+
+.admin-url {
+  display: block;
+  padding: 0.85rem 1rem;
+  background: var(--admin-primary-soft);
+  border-radius: 8px;
+  word-break: break-all;
+  font-size: 0.85rem;
+}
+
+.admin-auth-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}

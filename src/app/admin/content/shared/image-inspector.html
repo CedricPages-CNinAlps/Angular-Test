@@ -1,0 +1,66 @@
+<div class="image-inspector">
+  <label>
+    URL de l'image
+    <input
+      type="text"
+      placeholder="https://..."
+      [ngModel]="image().url"
+      (ngModelChange)="update({ url: $event })"
+    />
+  </label>
+  <label>
+    Texte alternatif
+    <input type="text" [ngModel]="image().alt" (ngModelChange)="update({ alt: $event })" />
+  </label>
+  <div class="image-inspector-row">
+    <label>
+      Largeur (px)
+      <input
+        type="number"
+        min="0"
+        [ngModel]="image().width"
+        (ngModelChange)="update({ width: $event })"
+      />
+    </label>
+    <label>
+      Hauteur (px)
+      <input
+        type="number"
+        min="0"
+        [ngModel]="image().height"
+        (ngModelChange)="update({ height: $event })"
+      />
+    </label>
+  </div>
+  <div class="image-inspector-row">
+    <label>
+      Ajustement
+      <select [ngModel]="image().objectFit" (ngModelChange)="update({ objectFit: $event })">
+        <option value="cover">Cover</option>
+        <option value="contain">Contain</option>
+        <option value="fill">Fill</option>
+      </select>
+    </label>
+    <label>
+      Arrondi ({{ image().radius }}px)
+      <input
+        type="range"
+        min="0"
+        max="80"
+        [ngModel]="image().radius"
+        (ngModelChange)="update({ radius: +$event })"
+      />
+    </label>
+  </div>
+  @if (image().url) {
+    <img
+      class="image-inspector-preview"
+      [src]="image().url"
+      [alt]="image().alt"
+      [style.width.px]="image().width"
+      [style.height.px]="image().height"
+      [style.object-fit]="image().objectFit"
+      [style.border-radius.px]="image().radius"
+    />
+  }
+</div>

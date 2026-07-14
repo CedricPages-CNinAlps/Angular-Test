@@ -1,0 +1,182 @@
+<h2 class="admin-section-title">Configuration technique</h2>
+<p class="admin-section-subtitle">Connectez le stockage JSONBin, le formulaire de contact EmailJS, le référencement et la sécurité du backoffice.</p>
+
+<div class="admin-callout">
+  ⚠️ Ce site n'a pas de serveur : les clés saisies ci-dessous restent dans le navigateur (localStorage) et transitent
+  dans le code livré au client. Utilisez une <strong>clé JSONBin restreinte</strong> (lecture/écriture sur ce bin
+  uniquement), pas la clé principale de votre compte. Cette protection est dissuasive, pas une sécurité serveur.
+</div>
+
+<div class="admin-card tech-card">
+  <h3>JSONBin — stockage du contenu</h3>
+  <p class="tech-hint">
+    Créez un compte gratuit sur jsonbin.io, un bin contenant <code>{{ '{}' }}</code>, puis une clé d'accès en
+    lecture/écriture limitée à ce bin.
+  </p>
+  <div class="field-row">
+    <label class="field">
+      Bin ID
+      <input
+        type="text"
+        [ngModel]="technicalConfig.config().jsonBin.binId"
+        (ngModelChange)="updateJsonBinField({ binId: $event })"
+      />
+    </label>
+    <label class="field">
+      Clé d'accès
+      <input
+        type="password"
+        [ngModel]="technicalConfig.config().jsonBin.accessKey"
+        (ngModelChange)="updateJsonBinField({ accessKey: $event })"
+      />
+    </label>
+  </div>
+  <button class="admin-btn admin-btn-ghost admin-btn-sm" type="button" (click)="testConnection()" [disabled]="testingConnection()">
+    {{ testingConnection() ? 'Test en cours…' : 'Tester la connexion' }}
+  </button>
+  @if (connectionResult(); as result) {
+    <p class="tech-result" [class.is-error]="!result.ok">{{ result.message }}</p>
+  }
+</div>
+
+<div class="admin-card tech-card">
+  <h3>EmailJS — formulaire de contact</h3>
+  <p class="tech-hint">Créez un compte sur emailjs.com, un service et un template, puis renseignez les identifiants ci-dessous.</p>
+  <div class="field-row">
+    <label class="field">
+      Service ID
+      <input
+        type="text"
+        [ngModel]="technicalConfig.config().emailJs.serviceId"
+        (ngModelChange)="updateEmailJsField({ serviceId: $event })"
+      />
+    </label>
+    <label class="field">
+      Template ID
+      <input
+        type="text"
+        [ngModel]="technicalConfig.config().emailJs.templateId"
+        (ngModelChange)="updateEmailJsField({ templateId: $event })"
+      />
+    </label>
+  </div>
+  <label class="field">
+    Public Key
+    <input
+      type="text"
+      [ngModel]="technicalConfig.config().emailJs.publicKey"
+      (ngModelChange)="updateEmailJsField({ publicKey: $event })"
+    />
+  </label>
+  <label class="field">
+    E-mail de destination pour le test
+    <input type="email" [ngModel]="testEmailAddress()" (ngModelChange)="testEmailAddress.set($event)" />
+  </label>
+  <button
+    class="admin-btn admin-btn-ghost admin-btn-sm"
+    type="button"
+    (click)="sendTestEmail()"
+    [disabled]="sendingTestEmail() || !testEmailAddress()"
+  >
+    {{ sendingTestEmail() ? 'Envoi…' : 'Envoyer un e-mail de test' }}
+  </button>
+  @if (testEmailResult(); as result) {
+    <p class="tech-result" [class.is-error]="!result.ok">{{ result.message }}</p>
+  }
+</div>
+
+<div class="admin-card tech-card">
+  <h3>Référencement (SEO)</h3>
+  <label class="field">
+    Titre de la page
+    <input type="text" [ngModel]="seo().title" (ngModelChange)="updateSeoField({ title: $event })" />
+  </label>
+  <label class="field">
+    Meta description
+    <textarea rows="3" [ngModel]="seo().description" (ngModelChange)="updateSeoField({ description: $event })"></textarea>
+  </label>
+  <div class="field-row">
+    <label class="field">
+      URL du favicon
+      <input type="text" [ngModel]="seo().favicon" (ngModelChange)="updateSeoField({ favicon: $event })" />
+    </label>
+    <label class="field">
+      Image de partage (OG)
+      <input type="text" [ngModel]="seo().ogImage" (ngModelChange)="updateSeoField({ ogImage: $event })" />
+    </label>
+  </div>
+  <p class="tech-hint">Ces champs sont publiés avec le contenu du site (bouton « Publier » en haut de page).</p>
+</div>
+
+<div class="admin-card tech-card">
+  <h3>Sécurité de l'administration</h3>
+  <div class="field-row">
+    <label class="field">
+      Mot de passe actuel
+      <input type="password" [ngModel]="currentPassword()" (ngModelChange)="currentPassword.set($event)" />
+    </label>
+    <label class="field">
+      Nouveau mot de passe
+      <input type="password" [ngModel]="newPassword()" (ngModelChange)="newPassword.set($event)" />
+    </label>
+    <label class="field">
+      Confirmation
+      <input type="password" [ngModel]="confirmPassword()" (ngModelChange)="confirmPassword.set($event)" />
+    </label>
+  </div>
+  <button class="admin-btn admin-btn-ghost admin-btn-sm" type="button" (click)="changePassword()">
+    Changer le mot de passe
+  </button>
+  @if (passwordMessage(); as msg) {
+    <p class="tech-result" [class.is-error]="!msg.ok">{{ msg.message }}</p>
+  }
+
+  <hr class="tech-divider" />
+
+  <p class="tech-hint">
+    Régénérer l'URL secrète déconnectera l'accès actuel : notez la nouvelle adresse qui s'affichera après confirmation.
+  </p>
+  <button class="admin-btn admin-btn-danger admin-btn-sm" type="button" (click)="regenerateToken()">
+    {{ regenerateConfirming() ? 'Confirmer la régénération' : "Régénérer l'URL secrète" }}
+  </button>
+</div>
+
+<div class="admin-card tech-card">
+  <h3>Sauvegarde</h3>
+  <div class="tech-backup-row">
+    <div>
+      <strong>Configuration technique</strong>
+      <p class="tech-hint">JSONBin, EmailJS (hors mot de passe).</p>
+    </div>
+    <div class="tech-backup-actions">
+      <button class="admin-btn admin-btn-ghost admin-btn-sm" type="button" (click)="exportTechnicalConfig()">Exporter</button>
+      <label class="admin-btn admin-btn-ghost admin-btn-sm tech-file-label">
+        Importer
+        <input type="file" accept="application/json" hidden (change)="importTechnicalConfig($event)" />
+      </label>
+    </div>
+  </div>
+  <div class="tech-backup-row">
+    <div>
+      <strong>Contenu du site</strong>
+      <p class="tech-hint">Thème et sections (brouillon courant).</p>
+    </div>
+    <div class="tech-backup-actions">
+      <button class="admin-btn admin-btn-ghost admin-btn-sm" type="button" (click)="exportSiteContent()">Exporter</button>
+      <label class="admin-btn admin-btn-ghost admin-btn-sm tech-file-label">
+        Importer
+        <input type="file" accept="application/json" hidden (change)="importSiteContent($event)" />
+      </label>
+    </div>
+  </div>
+  @if (importError()) {
+    <p class="tech-result is-error">{{ importError() }}</p>
+  }
+
+  <hr class="tech-divider" />
+
+  <p class="tech-hint">Réinitialiser écrase le brouillon courant avec le contenu d'exemple par défaut (à publier ensuite).</p>
+  <button class="admin-btn admin-btn-danger admin-btn-sm" type="button" (click)="resetToDefault()">
+    Réinitialiser au contenu par défaut
+  </button>
+</div>

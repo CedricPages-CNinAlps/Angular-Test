@@ -1,0 +1,105 @@
+.admin-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100dvh;
+}
+
+.admin-sidebar {
+  background: var(--admin-surface);
+  border-right: 1px solid var(--admin-border);
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+}
+
+.admin-brand {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.admin-nav {
+  display: grid;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.admin-nav a {
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  color: var(--admin-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.admin-nav a:hover {
+  background: var(--admin-primary-soft);
+  color: var(--admin-text);
+}
+
+.admin-nav a.active {
+  background: var(--admin-primary);
+  color: #fff;
+}
+
+.admin-main {
+  min-width: 0;
+}
+
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.admin-topbar-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.admin-publish-message {
+  margin: 1rem 2rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--admin-accent) 12%, transparent);
+  color: var(--admin-accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.admin-publish-message.is-error {
+  background: color-mix(in srgb, var(--admin-danger) 12%, transparent);
+  color: var(--admin-danger);
+}
+
+.admin-content {
+  padding: 2rem;
+  max-width: 900px;
+}
+
+@media (max-width: 860px) {
+  .admin-shell {
+    grid-template-columns: 1fr;
+  }
+  .admin-sidebar {
+    position: static;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    overflow-x: auto;
+  }
+  .admin-nav {
+    flex-direction: row;
+  }
+}

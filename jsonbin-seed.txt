@@ -1,0 +1,260 @@
+{
+  "theme": {
+    "colors": {
+      "primary": "#6d5bff",
+      "secondary": "#ff5b9e",
+      "accent": "#22d3ee",
+      "background": "#08070f",
+      "surface": "#100e1c",
+      "text": "#f5f4ff",
+      "textMuted": "#a6a2c3"
+    },
+    "fonts": {
+      "heading": "space-grotesk",
+      "body": "inter"
+    },
+    "titleStyle": "gradient",
+    "radius": 18,
+    "darkMode": true
+  },
+  "seo": {
+    "title": "Cédric Pagès — Développeur Web & Applications Fullstack",
+    "description": "CV en ligne de Cédric Pagès, développeur fullstack : compétences, expériences, formations et contact.",
+    "favicon": "",
+    "ogImage": ""
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "order": 0,
+      "visible": true,
+      "navLabel": "Accueil",
+      "eyebrow": "12 ans d’expérience multi-secteurs",
+      "name": "Cédric Pagès",
+      "role": "Développeur Web & Applications Fullstack",
+      "tagline": "Compétences généralistes en sciences et en techniques de management. Je m'investis pleinement dans les missions qui me sont confiées, avec une capacité d'adaptation forte au sein de structures à taille humaine.",
+      "ctaLabel": "Voir mes expériences",
+      "ctaTarget": "experience",
+      "secondaryCtaLabel": "Me contacter",
+      "secondaryCtaHref": "#contact",
+      "photo": {
+        "url": "",
+        "width": 360,
+        "height": 360,
+        "objectFit": "cover",
+        "radius": 24,
+        "alt": "Photo de Cédric Pagès"
+      }
+    },
+    {
+      "id": "about",
+      "type": "about",
+      "order": 1,
+      "visible": true,
+      "navLabel": "À propos",
+      "title": "À propos",
+      "bio": "Après une formation initiale en mécanique et en énergies renouvelables (photovoltaïque), j'ai construit un parcours atypique entre innovation, étude de marché, gestion de projet et commercialisation, avant de me spécialiser dans le développement web et applicatif fullstack. Cette double culture technique et gestion de projet me permet aujourd'hui d'évoluer aussi bien côté code que côté pilotage (PMO, coordination de projet).",
+      "stats": [
+        {
+          "id": "stat-1",
+          "label": "Années d'expérience",
+          "value": "12+"
+        },
+        {
+          "id": "stat-2",
+          "label": "Secteurs traversés",
+          "value": "5"
+        },
+        {
+          "id": "stat-3",
+          "label": "Projets menés",
+          "value": "30+"
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "type": "skills",
+      "order": 2,
+      "visible": true,
+      "navLabel": "Compétences",
+      "title": "Compétences",
+      "intro": "Un socle technique fullstack complété par de solides compétences en gestion de projet.",
+      "skills": [
+        {
+          "id": "sk-1",
+          "name": "TypeScript / JavaScript",
+          "level": 90,
+          "category": "Développement"
+        },
+        {
+          "id": "sk-2",
+          "name": "Angular",
+          "level": 85,
+          "category": "Développement"
+        },
+        {
+          "id": "sk-3",
+          "name": "Node.js",
+          "level": 80,
+          "category": "Développement"
+        },
+        {
+          "id": "sk-4",
+          "name": "HTML / CSS",
+          "level": 92,
+          "category": "Développement"
+        },
+        {
+          "id": "sk-5",
+          "name": "SQL / Bases de données",
+          "level": 75,
+          "category": "Développement"
+        },
+        {
+          "id": "sk-6",
+          "name": "Gestion de projet (PMO)",
+          "level": 88,
+          "category": "Management"
+        },
+        {
+          "id": "sk-7",
+          "name": "E-marketing & CRM",
+          "level": 78,
+          "category": "Management"
+        },
+        {
+          "id": "sk-8",
+          "name": "Relation client",
+          "level": 90,
+          "category": "Management"
+        }
+      ]
+    },
+    {
+      "id": "experience",
+      "type": "experience",
+      "order": 3,
+      "visible": true,
+      "navLabel": "Expériences",
+      "title": "Expériences",
+      "intro": "Un parcours varié, entre technique, gestion de projet et relation client.",
+      "items": [
+        {
+          "id": "exp-1",
+          "company": "Webmarketing Booster",
+          "role": "Customer Success Manager & Chef de projet E-marketing",
+          "period": "2021 — Aujourd’hui",
+          "location": "France",
+          "description": "Pilotage de projets e-marketing pour un portefeuille de clients, suivi de la satisfaction et de la performance des campagnes, coordination des équipes techniques et marketing.",
+          "tags": [
+            "Gestion de projet",
+            "E-marketing",
+            "CRM"
+          ]
+        },
+        {
+          "id": "exp-2",
+          "company": "Freelance / Missions diverses",
+          "role": "Développeur Web Fullstack",
+          "period": "2018 — 2021",
+          "location": "France",
+          "description": "Conception et développement de sites et applications web pour des TPE/PME : maquettage, développement front et back, mise en production et maintenance.",
+          "tags": [
+            "Angular",
+            "Node.js",
+            "TypeScript"
+          ]
+        },
+        {
+          "id": "exp-3",
+          "company": "Secteur photovoltaïque",
+          "role": "Ingénieur d’études — Énergies renouvelables",
+          "period": "2013 — 2018",
+          "location": "France",
+          "description": "Étude et dimensionnement d'installations photovoltaïques, suivi de projets d'innovation, relation avec les partenaires industriels.",
+          "tags": [
+            "Étude technique",
+            "Innovation",
+            "Gestion de projet"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "type": "education",
+      "order": 4,
+      "visible": true,
+      "navLabel": "Formations",
+      "title": "Formations",
+      "intro": "Un socle technique complété par une reconversion vers le développement web.",
+      "items": [
+        {
+          "id": "edu-1",
+          "school": "Formation développeur web",
+          "degree": "Développeur Web & Web Mobile",
+          "period": "2018",
+          "description": "Formation intensive fullstack : JavaScript, frameworks front, back-end Node.js, bases de données."
+        },
+        {
+          "id": "edu-2",
+          "school": "École d’ingénieurs",
+          "degree": "Diplôme en mécanique et énergies renouvelables",
+          "period": "2010 — 2013",
+          "description": "Spécialisation photovoltaïque : conception, dimensionnement et gestion de projets énergétiques."
+        }
+      ]
+    },
+    {
+      "id": "passions",
+      "type": "passions",
+      "order": 5,
+      "visible": true,
+      "navLabel": "Passions",
+      "title": "Passions",
+      "intro": "En dehors du travail, ce qui me fait avancer.",
+      "items": [
+        {
+          "id": "pas-1",
+          "title": "Veille technologique",
+          "description": "Suivre les évolutions de l'écosystème web et IA.",
+          "icon": "💡"
+        },
+        {
+          "id": "pas-2",
+          "title": "Sport",
+          "description": "Pratique régulière pour garder un bon équilibre.",
+          "icon": "🏃"
+        },
+        {
+          "id": "pas-3",
+          "title": "Voyages",
+          "description": "Découvrir de nouvelles cultures et perspectives.",
+          "icon": "✈️"
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "order": 6,
+      "visible": true,
+      "navLabel": "Contact",
+      "title": "Contact",
+      "intro": "Une opportunité, une question ? N'hésitez pas à me contacter.",
+      "email": "cedric.pages@le-campus-numerique.fr",
+      "phone": "",
+      "location": "France",
+      "socials": [
+        {
+          "id": "soc-1",
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com",
+          "icon": "linkedin"
+        }
+      ]
+    }
+  ]
+}

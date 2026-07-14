@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+.preview-banner {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: #111827;
+  color: #fff;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+}
+
+.preview-frame {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}

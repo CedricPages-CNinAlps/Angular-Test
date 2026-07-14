@@ -1,0 +1,98 @@
+<h2 class="admin-section-title">Apparence</h2>
+<p class="admin-section-subtitle">Personnalisez les couleurs, les polices et le style visuel du CV.</p>
+
+<div class="appearance-layout">
+  <div class="appearance-form admin-card">
+    <h4>Couleurs</h4>
+    <div class="color-grid">
+      <label class="field color-field">
+        Primaire
+        <input type="color" [ngModel]="theme().colors.primary" (ngModelChange)="updateColor('primary', $event)" />
+      </label>
+      <label class="field color-field">
+        Secondaire
+        <input type="color" [ngModel]="theme().colors.secondary" (ngModelChange)="updateColor('secondary', $event)" />
+      </label>
+      <label class="field color-field">
+        Accent
+        <input type="color" [ngModel]="theme().colors.accent" (ngModelChange)="updateColor('accent', $event)" />
+      </label>
+      <label class="field color-field">
+        Fond
+        <input type="color" [ngModel]="theme().colors.background" (ngModelChange)="updateColor('background', $event)" />
+      </label>
+      <label class="field color-field">
+        Surface (cartes)
+        <input type="color" [ngModel]="theme().colors.surface" (ngModelChange)="updateColor('surface', $event)" />
+      </label>
+      <label class="field color-field">
+        Texte
+        <input type="color" [ngModel]="theme().colors.text" (ngModelChange)="updateColor('text', $event)" />
+      </label>
+      <label class="field color-field">
+        Texte atténué
+        <input type="color" [ngModel]="theme().colors.textMuted" (ngModelChange)="updateColor('textMuted', $event)" />
+      </label>
+    </div>
+
+    <h4>Polices</h4>
+    <div class="field-row">
+      <label class="field">
+        Titres
+        <select [ngModel]="theme().fonts.heading" (ngModelChange)="updateFont('heading', $event)">
+          @for (font of fonts; track font.key) {
+            <option [value]="font.key">{{ font.label }}</option>
+          }
+        </select>
+      </label>
+      <label class="field">
+        Texte courant
+        <select [ngModel]="theme().fonts.body" (ngModelChange)="updateFont('body', $event)">
+          @for (font of fonts; track font.key) {
+            <option [value]="font.key">{{ font.label }}</option>
+          }
+        </select>
+      </label>
+    </div>
+
+    <h4>Style des titres</h4>
+    <div class="title-style-gallery">
+      @for (style of titleStyles; track style.key) {
+        <button
+          type="button"
+          class="title-style-option"
+          [class.is-active]="theme().titleStyle === style.key"
+          (click)="setTitleStyle(style.key)"
+        >
+          {{ style.label }}
+        </button>
+      }
+    </div>
+
+    <h4>Forme</h4>
+    <label class="field">
+      Arrondi des éléments ({{ theme().radius }}px)
+      <input type="range" min="0" max="32" [ngModel]="theme().radius" (ngModelChange)="updateRadius(+$event)" />
+    </label>
+
+    <label class="admin-switch">
+      <input type="checkbox" [checked]="theme().darkMode" (change)="toggleDarkMode(!theme().darkMode)" />
+      Mode sombre
+    </label>
+  </div>
+
+  <div class="appearance-preview">
+    <div class="theme-preview" [style]="previewStyle()" [attr.data-title-style]="theme().titleStyle">
+      <span class="preview-eyebrow">Aperçu</span>
+      <h3 class="preview-title">Cédric Pagès</h3>
+      <p class="preview-text">
+        Développeur Web & Applications Fullstack — texte de démonstration pour visualiser le rendu.
+      </p>
+      <div class="preview-actions">
+        <button type="button" class="preview-btn preview-btn-primary">Bouton principal</button>
+        <button type="button" class="preview-btn preview-btn-ghost">Secondaire</button>
+      </div>
+      <div class="preview-card">Carte de contenu</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div cdkDropList class="array-field-list" (cdkDropListDropped)="onDrop($event)">
+  @for (item of items(); track trackByIndex($index); let i = $index) {
+    <div cdkDrag class="array-field-item">
+      <span class="array-field-handle" cdkDragHandle>⠿</span>
+      <div class="array-field-body">
+        <ng-container [ngTemplateOutlet]="itemTemplate()" [ngTemplateOutletContext]="{ $implicit: item, index: i }" />
+      </div>
+      <button type="button" class="array-field-remove" (click)="remove.emit(i)" aria-label="Supprimer">✕</button>
+    </div>
+  }
+</div>
+<button type="button" class="admin-btn admin-btn-ghost admin-btn-sm" (click)="add.emit()">+ {{ addLabel() }}</button>

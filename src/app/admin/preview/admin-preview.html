@@ -1,0 +1,8 @@
+<div class="preview-banner">
+  <span>👁️ Aperçu du brouillon — ces modifications ne sont pas encore publiées.</span>
+</div>
+<div class="preview-frame">
+  @for (section of sections(); track section.id) {
+    <app-section-renderer [section]="section" />
+  }
+</div>

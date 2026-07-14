@@ -1,0 +1,40 @@
+@if (content(); as c) {
+  <label class="field">
+    Titre de section
+    <input type="text" [ngModel]="c.title" (ngModelChange)="update({ title: $event })" />
+  </label>
+  <label class="field">
+    Introduction
+    <textarea rows="3" [ngModel]="c.intro" (ngModelChange)="update({ intro: $event })"></textarea>
+  </label>
+
+  <h4>Formations</h4>
+  <app-array-field-editor
+    [items]="c.items"
+    [itemTemplate]="itemTpl"
+    addLabel="Ajouter une formation"
+    (add)="addItem()"
+    (remove)="removeItem($event)"
+    (reorder)="reorderItems($event)"
+  />
+  <ng-template #itemTpl let-item let-i="index">
+    <div class="field-row">
+      <label class="field">
+        Diplôme
+        <input type="text" [ngModel]="item.degree" (ngModelChange)="updateItem(i, { degree: $event })" />
+      </label>
+      <label class="field">
+        Établissement
+        <input type="text" [ngModel]="item.school" (ngModelChange)="updateItem(i, { school: $event })" />
+      </label>
+    </div>
+    <label class="field">
+      Période
+      <input type="text" [ngModel]="item.period" (ngModelChange)="updateItem(i, { period: $event })" />
+    </label>
+    <label class="field">
+      Description
+      <textarea rows="3" [ngModel]="item.description" (ngModelChange)="updateItem(i, { description: $event })"></textarea>
+    </label>
+  </ng-template>
+}

@@ -1,1 +1,240 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-primary: #6d5bff;
+  --color-secondary: #ff5b9e;
+  --color-accent: #22d3ee;
+  --color-background: #08070f;
+  --color-surface: #100e1c;
+  --color-text: #f5f4ff;
+  --color-text-muted: #a6a2c3;
+  --radius-base: 18px;
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  --gradient-accent: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+  --shadow-soft: 0 20px 60px -20px rgba(0, 0, 0, 0.5);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* ,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* Layout helpers */
+.container {
+  width: min(1120px, 92vw);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: clamp(4rem, 10vw, 8rem);
+  position: relative;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.section-intro {
+  max-width: 640px;
+  font-size: 1.05rem;
+  margin-bottom: 3rem;
+}
+
+/* Title style variants, driven by data-title-style on <html> */
+[data-title-style='gradient'] .section-title {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+[data-title-style='underline'] .section-title {
+  position: relative;
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+[data-title-style='underline'] .section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 64px;
+  border-radius: 4px;
+  background: var(--gradient-primary);
+}
+
+[data-title-style='boxed'] .section-title {
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  border-radius: var(--radius-base);
+  background: color-mix(in srgb, var(--color-primary) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
+}
+
+[data-title-style='minimal'] .section-title {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+[data-title-style='outline'] .section-title {
+  -webkit-text-stroke: 1.5px var(--color-text);
+  color: transparent;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-base);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s ease, background 0.35s ease, border-color 0.35s ease;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 50px -16px color-mix(in srgb, var(--color-primary) 60%, transparent);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: color-mix(in srgb, var(--color-text) 25%, transparent);
+  color: var(--color-text);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  transform: translateY(-3px);
+}
+
+/* Cards */
+.card {
+  background: var(--color-surface);
+  border: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+  border-radius: var(--radius-base);
+  padding: 1.75rem;
+  transition: transform 0.4s var(--ease-out-expo), border-color 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--color-primary) 50%, transparent);
+}
+
+.chip {
+  display: inline-flex;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Scroll reveal */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease-out-expo) var(--reveal-delay, 0ms),
+    transform 0.8s var(--ease-out-expo) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-init.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal-init,
+  .reveal-init.is-revealed {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}

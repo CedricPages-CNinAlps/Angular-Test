@@ -1,0 +1,50 @@
+@if (content(); as c) {
+  <label class="field">
+    Titre de section
+    <input type="text" [ngModel]="c.title" (ngModelChange)="update({ title: $event })" />
+  </label>
+  <label class="field">
+    Introduction
+    <textarea rows="3" [ngModel]="c.intro" (ngModelChange)="update({ intro: $event })"></textarea>
+  </label>
+
+  <h4>Expériences</h4>
+  <app-array-field-editor
+    [items]="c.items"
+    [itemTemplate]="itemTpl"
+    addLabel="Ajouter une expérience"
+    (add)="addItem()"
+    (remove)="removeItem($event)"
+    (reorder)="reorderItems($event)"
+  />
+  <ng-template #itemTpl let-item let-i="index">
+    <div class="field-row">
+      <label class="field">
+        Poste
+        <input type="text" [ngModel]="item.role" (ngModelChange)="updateItem(i, { role: $event })" />
+      </label>
+      <label class="field">
+        Entreprise
+        <input type="text" [ngModel]="item.company" (ngModelChange)="updateItem(i, { company: $event })" />
+      </label>
+    </div>
+    <div class="field-row">
+      <label class="field">
+        Période
+        <input type="text" [ngModel]="item.period" (ngModelChange)="updateItem(i, { period: $event })" />
+      </label>
+      <label class="field">
+        Lieu
+        <input type="text" [ngModel]="item.location" (ngModelChange)="updateItem(i, { location: $event })" />
+      </label>
+    </div>
+    <label class="field">
+      Description
+      <textarea rows="3" [ngModel]="item.description" (ngModelChange)="updateItem(i, { description: $event })"></textarea>
+    </label>
+    <label class="field">
+      Tags (séparés par des virgules)
+      <input type="text" [ngModel]="tagsText(item)" (ngModelChange)="updateTags(i, $event)" />
+    </label>
+  </ng-template>
+}

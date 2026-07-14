@@ -1,0 +1,39 @@
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header class="site-header" [class.is-open]="navOpen()">
+  <div class="container header-inner">
+    <a class="brand" href="#hero" (click)="closeNav()">CV</a>
+    <button
+      class="nav-toggle"
+      type="button"
+      (click)="navOpen.set(!navOpen())"
+      [attr.aria-expanded]="navOpen()"
+      aria-label="Ouvrir le menu"
+    >
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav">
+      @for (section of sections(); track section.id) {
+        <a [href]="'#' + section.id" [class.active]="activeSectionId() === section.id" (click)="closeNav()">
+          {{ section.navLabel }}
+        </a>
+      }
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  @if (loading()) {
+    <div class="loading-screen"><span class="loading-spinner"></span></div>
+  } @else {
+    @for (section of sections(); track section.id) {
+      <app-section-renderer [section]="section" />
+    }
+  }
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© {{ currentYear }} — Réalisé avec Angular.</p>
+  </div>
+</footer>

@@ -1,0 +1,36 @@
+@if (content(); as c) {
+  <label class="field">
+    Titre de section
+    <input type="text" [ngModel]="c.title" (ngModelChange)="update({ title: $event })" />
+  </label>
+  <label class="field">
+    Introduction
+    <textarea rows="3" [ngModel]="c.intro" (ngModelChange)="update({ intro: $event })"></textarea>
+  </label>
+
+  <h4>Passions</h4>
+  <app-array-field-editor
+    [items]="c.items"
+    [itemTemplate]="itemTpl"
+    addLabel="Ajouter une passion"
+    (add)="addItem()"
+    (remove)="removeItem($event)"
+    (reorder)="reorderItems($event)"
+  />
+  <ng-template #itemTpl let-item let-i="index">
+    <div class="field-row">
+      <label class="field">
+        Icône (emoji)
+        <input type="text" [ngModel]="item.icon" (ngModelChange)="updateItem(i, { icon: $event })" />
+      </label>
+      <label class="field">
+        Titre
+        <input type="text" [ngModel]="item.title" (ngModelChange)="updateItem(i, { title: $event })" />
+      </label>
+    </div>
+    <label class="field">
+      Description
+      <textarea rows="2" [ngModel]="item.description" (ngModelChange)="updateItem(i, { description: $event })"></textarea>
+    </label>
+  </ng-template>
+}

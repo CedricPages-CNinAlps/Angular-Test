@@ -1,0 +1,45 @@
+<div class="admin-root admin-auth-screen">
+  <div class="admin-auth-card admin-card">
+    @if (!done()) {
+      <h1>Configuration du backoffice</h1>
+      <p>Première visite : définissez un mot de passe pour protéger l'administration du site.</p>
+      <form (ngSubmit)="submit()">
+        <label class="field">
+          Mot de passe
+          <input
+            type="password"
+            name="password"
+            required
+            minlength="6"
+            [ngModel]="password()"
+            (ngModelChange)="password.set($event)"
+          />
+        </label>
+        <label class="field">
+          Confirmation
+          <input
+            type="password"
+            name="confirmPassword"
+            required
+            [ngModel]="confirmPassword()"
+            (ngModelChange)="confirmPassword.set($event)"
+          />
+        </label>
+        @if (error()) {
+          <p class="admin-auth-error">{{ error() }}</p>
+        }
+        <button class="admin-btn admin-btn-primary" type="submit">Créer l'accès admin</button>
+      </form>
+    } @else {
+      <h1>C'est prêt !</h1>
+      <p>Notez précieusement cette adresse : c'est la seule façon d'accéder au backoffice.</p>
+      <code class="admin-url">{{ adminUrl() }}</code>
+      <div class="admin-auth-actions">
+        <button class="admin-btn admin-btn-ghost" type="button" (click)="copyUrl()">
+          {{ copied() ? 'Copié !' : 'Copier le lien' }}
+        </button>
+        <button class="admin-btn admin-btn-primary" type="button" (click)="goToAdmin()">Se connecter maintenant</button>
+      </div>
+    }
+  </div>
+</div>
