@@ -32,10 +32,7 @@
       </form>
     } @else {
       <h1>C'est prêt !</h1>
-      <p>Notez précieusement cet e-mail et cette adresse : c'est la seule façon d'accéder au backoffice.</p>
-      <p class="tech-hint">E-mail de connexion</p>
-      <code class="admin-url">{{ email() }}</code>
-      <p class="tech-hint">URL secrète</p>
+      <p>Notez précieusement cette adresse : c'est la seule façon d'accéder au backoffice.</p>
       <code class="admin-url">{{ adminUrl() }}</code>
       <div class="admin-auth-actions">
         <button class="admin-btn admin-btn-ghost" type="button" (click)="copyUrl()">
