@@ -5,7 +5,7 @@
   <div class="admin-card dashboard-card">
     <span class="dashboard-value">{{ visibleSections() }} / {{ totalSections() }}</span>
     <span class="dashboard-label">Sections visibles</span>
-    <a routerLink="../contenu" class="admin-btn admin-btn-ghost admin-btn-sm">Gérer le contenu</a>
+    <a routerLink="contenu" class="admin-btn admin-btn-ghost admin-btn-sm">Gérer le contenu</a>
   </div>
 
   <div class="admin-card dashboard-card">
@@ -16,7 +16,7 @@
     @if (usingFallback()) {
       <p class="dashboard-note">Le site public affiche actuellement le contenu par défaut.</p>
     }
-    <a routerLink="../technique" class="admin-btn admin-btn-ghost admin-btn-sm">Configurer</a>
+    <a routerLink="technique" class="admin-btn admin-btn-ghost admin-btn-sm">Configurer</a>
   </div>
 
   <div class="admin-card dashboard-card">
@@ -24,12 +24,12 @@
       {{ emailJsConfigured() ? 'Configuré' : 'Non configuré' }}
     </span>
     <span class="dashboard-label">EmailJS (formulaire de contact)</span>
-    <a routerLink="../technique" class="admin-btn admin-btn-ghost admin-btn-sm">Configurer</a>
+    <a routerLink="technique" class="admin-btn admin-btn-ghost admin-btn-sm">Configurer</a>
   </div>
 
   <div class="admin-card dashboard-card">
     <span class="dashboard-value">🎨</span>
     <span class="dashboard-label">Couleurs, polices, styles de titre</span>
-    <a routerLink="../apparence" class="admin-btn admin-btn-ghost admin-btn-sm">Personnaliser</a>
+    <a routerLink="apparence" class="admin-btn admin-btn-ghost admin-btn-sm">Personnaliser</a>
   </div>
 </div>
