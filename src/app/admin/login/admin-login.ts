@@ -14,6 +14,7 @@ export class AdminLogin {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
+  readonly email = signal('');
   readonly password = signal('');
   readonly error = signal('');
   readonly loading = signal(false);
@@ -21,10 +22,10 @@ export class AdminLogin {
   async submit(): Promise<void> {
     this.error.set('');
     this.loading.set(true);
-    const ok = await this.auth.login(this.password());
+    const ok = await this.auth.login(this.email(), this.password());
     this.loading.set(false);
     if (!ok) {
-      this.error.set('Mot de passe incorrect.');
+      this.error.set('E-mail ou mot de passe incorrect.');
       return;
     }
     const token = this.route.parent?.snapshot.paramMap.get('token') ?? this.route.snapshot.paramMap.get('token');

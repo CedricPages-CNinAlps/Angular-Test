@@ -15,6 +15,7 @@ export class AdminSetup {
   private readonly technicalConfig = inject(TechnicalConfigService);
   private readonly router = inject(Router);
 
+  readonly email = signal(this.technicalConfig.config().admin.email);
   readonly password = signal('');
   readonly confirmPassword = signal('');
   readonly error = signal('');
@@ -24,6 +25,10 @@ export class AdminSetup {
 
   async submit(): Promise<void> {
     this.error.set('');
+    if (!this.email().trim()) {
+      this.error.set("L'e-mail de connexion est requis.");
+      return;
+    }
     if (this.password().length < 6) {
       this.error.set('Le mot de passe doit contenir au moins 6 caractères.');
       return;
@@ -35,7 +40,7 @@ export class AdminSetup {
 
     const token = this.auth.generateToken();
     await this.auth.setPassword(this.password());
-    this.technicalConfig.updateAdmin({ urlToken: token });
+    this.technicalConfig.updateAdmin({ urlToken: token, email: this.email().trim() });
     this.adminUrl.set(`${window.location.origin}/admin/${token}`);
     this.done.set(true);
   }

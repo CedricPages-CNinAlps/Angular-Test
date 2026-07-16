@@ -2,8 +2,18 @@
   <div class="admin-auth-card admin-card">
     @if (!done()) {
       <h1>Configuration du backoffice</h1>
-      <p>Première visite : définissez un mot de passe pour protéger l'administration du site.</p>
+      <p>Première visite : définissez un e-mail et un mot de passe pour protéger l'administration du site.</p>
       <form (ngSubmit)="submit()">
+        <label class="field">
+          E-mail de connexion
+          <input
+            type="email"
+            name="email"
+            required
+            [ngModel]="email()"
+            (ngModelChange)="email.set($event)"
+          />
+        </label>
         <label class="field">
           Mot de passe
           <input

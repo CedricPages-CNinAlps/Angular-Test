@@ -110,6 +110,14 @@
 
 <div class="admin-card tech-card">
   <h3>Sécurité de l'administration</h3>
+  <label class="field">
+    E-mail de connexion
+    <input
+      type="email"
+      [ngModel]="technicalConfig.config().admin.email"
+      (ngModelChange)="updateAdminEmail($event)"
+    />
+  </label>
   <div class="field-row">
     <label class="field">
       Mot de passe actuel

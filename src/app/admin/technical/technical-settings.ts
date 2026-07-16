@@ -44,6 +44,10 @@ export class TechnicalSettings {
 
   readonly importError = signal('');
 
+  updateAdminEmail(email: string): void {
+    this.technicalConfig.updateAdmin({ email });
+  }
+
   updateJsonBinField(patch: Partial<{ binId: string; accessKey: string }>): void {
     this.technicalConfig.updateJsonBin(patch);
     this.connectionResult.set(null);

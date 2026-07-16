@@ -22,9 +22,12 @@ export class AuthService {
     this.technicalConfig.updateAdmin({ passwordHash });
   }
 
-  async login(password: string): Promise<boolean> {
+  async login(email: string, password: string): Promise<boolean> {
     const candidate = await this.hash(password);
-    const ok = candidate === this.technicalConfig.config().admin.passwordHash;
+    const admin = this.technicalConfig.config().admin;
+    const emailOk = email.trim().toLowerCase() === admin.email.trim().toLowerCase();
+    const passwordOk = candidate === admin.passwordHash;
+    const ok = emailOk && passwordOk;
     if (ok) {
       this._authenticated.set(true);
       sessionStorage.setItem(SESSION_KEY, 'true');

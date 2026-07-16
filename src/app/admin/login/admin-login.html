@@ -1,8 +1,12 @@
 <div class="admin-root admin-auth-screen">
   <div class="admin-auth-card admin-card">
     <h1>Connexion</h1>
-    <p>Entrez le mot de passe administrateur pour accéder au backoffice.</p>
+    <p>Entrez l'e-mail et le mot de passe administrateur pour accéder au backoffice.</p>
     <form (ngSubmit)="submit()">
+      <label class="field">
+        E-mail
+        <input type="email" name="email" required [ngModel]="email()" (ngModelChange)="email.set($event)" />
+      </label>
       <label class="field">
         Mot de passe
         <input type="password" name="password" required [ngModel]="password()" (ngModelChange)="password.set($event)" />
