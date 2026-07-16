@@ -2,18 +2,8 @@
   <div class="admin-auth-card admin-card">
     @if (!done()) {
       <h1>Configuration du backoffice</h1>
-      <p>Première visite : définissez un e-mail et un mot de passe pour protéger l'administration du site.</p>
+      <p>Première visite : définissez un mot de passe pour protéger l'administration du site.</p>
       <form (ngSubmit)="submit()">
-        <label class="field">
-          E-mail de connexion
-          <input
-            type="email"
-            name="email"
-            required
-            [ngModel]="email()"
-            (ngModelChange)="email.set($event)"
-          />
-        </label>
         <label class="field">
           Mot de passe
           <input
@@ -42,7 +32,10 @@
       </form>
     } @else {
       <h1>C'est prêt !</h1>
-      <p>Notez précieusement cette adresse : c'est la seule façon d'accéder au backoffice.</p>
+      <p>Notez précieusement cet e-mail et cette adresse : c'est la seule façon d'accéder au backoffice.</p>
+      <p class="tech-hint">E-mail de connexion</p>
+      <code class="admin-url">{{ email() }}</code>
+      <p class="tech-hint">URL secrète</p>
       <code class="admin-url">{{ adminUrl() }}</code>
       <div class="admin-auth-actions">
         <button class="admin-btn admin-btn-ghost" type="button" (click)="copyUrl()">
