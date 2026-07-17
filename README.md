@@ -4,6 +4,13 @@ CV en ligne animé (site public monopage) avec un backoffice complet permettant 
 le thème (couleurs, polices, styles de titres), les images et l'ordre des sections. Généré à partir
 d'[Angular CLI](https://github.com/angular/angular-cli) version 22.0.6.
 
+- 🔗 Dépôt GitHub : https://github.com/CedricPages-CNinAlps/Angular-Test
+- 🌐 Frontoffice (GitHub Pages) : https://cedricpages-cninalps.github.io/Angular-Test/
+- 🔑 Création de l'URL secrète (premier lancement) pour créer un accès au backoffice : https://cedricpages-cninalps.github.io/Angular-Test/admin/setup
+
+⚠️ **ATTENTION** : l'URL secrète du backoffice est stockée en clair dans le `localStorage` du navigateur,
+pas côté serveur — elle n'offre donc qu'une protection dissuasive (voir « Avertissement sécurité » plus bas).
+
 ## Premier lancement
 
 1. `npm install`
@@ -20,7 +27,8 @@ Le site public lit son contenu depuis un [bin JSONBin.io](https://jsonbin.io). T
 configuré, le site affiche un contenu d'exemple embarqué.
 
 1. Créer un compte gratuit sur jsonbin.io.
-2. Créer un bin contenant `{}`.
+2. Créer un bin en y copiant le contenu de [`jsonbin-seed.txt`](./jsonbin-seed.txt) (contenu initial attendu par
+   l'application).
 3. Créer une **clé d'accès restreinte** à ce bin (lecture + écriture), pas la clé principale du compte.
 4. Renseigner le Bin ID et la clé dans le backoffice, onglet **Technique**, puis « Tester la connexion ».
 5. Publier depuis le backoffice pour écrire le contenu dans le bin.
