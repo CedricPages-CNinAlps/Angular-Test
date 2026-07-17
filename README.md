@@ -4,9 +4,9 @@ CV en ligne animé (site public monopage) avec un backoffice complet permettant 
 le thème (couleurs, polices, styles de titres), les images et l'ordre des sections. Généré à partir
 d'[Angular CLI](https://github.com/angular/angular-cli) version 22.0.6.
 
-- 🔗 Dépôt GitHub : https://github.com/CedricPages-CNinAlps/Angular-Test
-- 🌐 Frontoffice (GitHub Pages) : https://cedricpages-cninalps.github.io/Angular-Test/
-- 🔑 Création de l'URL secrète (premier lancement) pour créer un accès au backoffice : https://cedricpages-cninalps.github.io/Angular-Test/admin/setup
+- 🔗 Dépôt GitHub : <a href="https://github.com/CedricPages-CNinAlps/Angular-Test" target="_blank" rel="noopener">https://github.com/CedricPages-CNinAlps/Angular-Test</a>
+- 🌐 Frontoffice (GitHub Pages) : <a href="https://cedricpages-cninalps.github.io/Angular-Test/" target="_blank" rel="noopener">https://cedricpages-cninalps.github.io/Angular-Test/</a>
+- 🔑 Création de l'URL secrète (premier lancement) pour créer un accès au backoffice : <a href="https://cedricpages-cninalps.github.io/Angular-Test/admin/setup" target="_blank" rel="noopener">https://cedricpages-cninalps.github.io/Angular-Test/admin/setup</a>
 
 ⚠️ **ATTENTION** : l'URL secrète du backoffice est stockée en clair dans le `localStorage` du navigateur,
 pas côté serveur — elle n'offre donc qu'une protection dissuasive (voir « Avertissement sécurité » plus bas).
